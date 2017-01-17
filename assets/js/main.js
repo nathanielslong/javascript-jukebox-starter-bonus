@@ -32,13 +32,23 @@ Jukebox.prototype.previousSong = function() {
 }
 
 Jukebox.prototype.play = function() {
+  if (current.innerText != "Currently Playing: " + this.music[currentIndex].fileName) {
   player.src = this.music[currentIndex].location;
   current.innerText = "Currently Playing: " + this.music[currentIndex].fileName;
-  player.play();
+  player.play(); 
+  } else {
+    player.play();
+  }
 }
+
 
 Jukebox.prototype.pause = function() {
   player.pause();
+}
+
+Jukebox.prototype.stop = function() {
+  player.pause();
+  current.innerText = "Currently Playing: ";
 }
 
 Jukebox.prototype.volUp = function() {
