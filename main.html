@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="assets/css/animate.css">
   </head>
   <body>
-    <h1 id="songiden"></h1>
     <audio id="player" src="assets/music/fearless.mp3"></audio>
+    <h3 id="current"></h3>
     <button onclick="jukebox1.play()">Play</button>
     <button onclick="jukebox1.pause()">Pause</button>
-    <button onclick="jukebox1.volup()">Volume Up</button>
-    <button onclick="jukebox1.voldown()">Volume Down</button>
-    <button onclick="jukebox1.nextsong();jukebox1.play()">Next Song</button>
-    <button onclick="jukebox1.previoussong();jukebox1.play()">Previous Song</button>
+    <button onclick="jukebox1.volUp()">Volume Up</button>
+    <button onclick="jukebox1.volDown()">Volume Down</button>
+    <button onclick="jukebox1.nextSong();jukebox1.play()">Next Song</button>
+    <button onclick="jukebox1.previousSong();jukebox1.play()">Previous Song</button>
     <button onclick="jukebox1.shuffle();jukebox1.play()">Shuffle</button>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="assets/js/bootstrap.js"></script>

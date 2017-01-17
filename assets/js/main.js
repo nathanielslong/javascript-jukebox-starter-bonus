@@ -1,6 +1,6 @@
-function Song(location,filename) {
+function Song(location,fileName) {
   this.location = location;
-  this.filename = filename;
+  this.fileName = fileName;
 }
 
 function Jukebox() {
@@ -8,32 +8,32 @@ function Jukebox() {
 }
 
 var player = document.getElementById("player");
-var songiden = document.getElementById("songiden");
-var currentindex = 0;
+var current = document.getElementById("current");
+var currentIndex = 0;
 
 Jukebox.prototype.index = function(num) {
-  currentindex = num;
+  currentIndex = num;
 }
 
-Jukebox.prototype.nextsong = function() {
-  if (this.music.length - 1 < currentindex + 1) {
-    currentindex = 0;
+Jukebox.prototype.nextSong = function() {
+  if (this.music.length - 1 < currentIndex + 1) {
+    currentIndex = 0;
   } else {
-    currentindex = currentindex + 1;
+    currentIndex = currentIndex + 1;
   }
 }
 
-Jukebox.prototype.previoussong = function() {
-  if (currentindex - 1 < 0) {
-    currentindex = this.music.length - 1;
+Jukebox.prototype.previousSong = function() {
+  if (currentIndex - 1 < 0) {
+    currentIndex = this.music.length - 1;
   } else {
-    currentindex = currentindex - 1;
+    currentIndex = currentIndex - 1;
   }
 }
 
 Jukebox.prototype.play = function() {
-  player.src = this.music[currentindex].location;
-  songiden.innerText = this.music[currentindex].filename;
+  player.src = this.music[currentIndex].location;
+  current.innerText = "Currently Playing: " + this.music[currentIndex].fileName;
   player.play();
 }
 
@@ -41,16 +41,16 @@ Jukebox.prototype.pause = function() {
   player.pause();
 }
 
-Jukebox.prototype.volup = function() {
+Jukebox.prototype.volUp = function() {
   player.volume+=0.1;
 }
 
-Jukebox.prototype.voldown = function() {
+Jukebox.prototype.volDown = function() {
   player.volume-=0.1;
 }
 
 Jukebox.prototype.shuffle = function() {
-  currentindex = Math.floor(Math.random() * (this.music.length));
+  currentIndex = Math.floor(Math.random() * (this.music.length));
 }
 
 var song1 = new Song("assets/music/fearless.mp3","Fearless");
@@ -61,5 +61,26 @@ var jukebox1 = new Jukebox();
 jukebox1.music.push(song1);
 jukebox1.music.push(song2);
 jukebox1.music.push(song3);
+
+var node = document.getElementById("player");
+
+$(document).ready(function() {
+  for (i=0;i<jukebox1.music.length;i++) {
+    var song = document.createElement("h1");
+    song.innerText = jukebox1.music[i].fileName;
+    node.parentNode.insertBefore(song, node);
+  }
+  songStrings = [];
+  var songNames = $("h1");
+
+  $.each(songNames, function( index, value  ) {
+    songStrings.push(value.innerText)
+  });
+
+  $("h1").click(function() {
+    currentIndex = songStrings.indexOf(this.innerText);
+    jukebox1.play();
+  })
+})
 
 $(document).ready(jukebox1.play())
