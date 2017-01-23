@@ -16,6 +16,9 @@
     <button onclick="jukebox1.nextSong();jukebox1.play()">Next Song</button>
     <button onclick="jukebox1.previousSong();jukebox1.play()">Previous Song</button>
     <button onclick="jukebox1.shuffle();jukebox1.play()">Shuffle</button>
+    <h2>Load your own song via URL!</h2>
+    <input type="text" id="load-song" name="Load Song" placeholder="http://www.song.com/song.mp3">
+    <button onclick="jukebox1.load()">Load!</button>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="assets/js/bootstrap.js"></script>
     <script src="assets/js/main.js"></script>

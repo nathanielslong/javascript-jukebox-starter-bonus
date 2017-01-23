@@ -15,6 +15,18 @@ Jukebox.prototype.index = function(num) {
   currentIndex = num;
 }
 
+Jukebox.prototype.load = function() {
+  var loadLocation = $("#load-song").val();
+  var loadedSong = new Song(loadLocation, "user-loaded song");
+  jukebox1.music.push(loadedSong);
+  var song = document.createElement("h1");
+  var length = jukebox1.music.length;
+  song.innerText = jukebox1.music[length-1].fileName;
+  node.parentNode.insertBefore(song, node); 
+  currentIndex = jukebox1.music.length - 1;
+  jukebox1.play();
+}
+
 Jukebox.prototype.nextSong = function() {
   if (this.music.length - 1 < currentIndex + 1) {
     currentIndex = 0;
@@ -73,6 +85,8 @@ jukebox1.music.push(song2);
 jukebox1.music.push(song3);
 
 var node = document.getElementById("player");
+
+
 
 $(document).ready(function() {
   for (i=0;i<jukebox1.music.length;i++) {
